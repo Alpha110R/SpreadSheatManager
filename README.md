@@ -1,4 +1,4 @@
-# Spread Sheet Manager :memo:
+# Spreadsheet Manager :memo:
 
 
 ## Capabilities:
