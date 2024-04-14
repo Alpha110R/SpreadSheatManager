@@ -17,6 +17,7 @@
 - NULL isn't a valid value input.
 - A cell can lookup on a non-existent cell.
 - lookup function looks like: "lookup(A,1)" to get recognized.
+- Behave like a module.
 
 ## Run the project: (if you work with IntelliJ)
 1) Run the example in the main and you can add cases.
