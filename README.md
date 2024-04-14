@@ -25,3 +25,8 @@
 ![image](https://github.com/Alpha110R/SpreadSheatManager/assets/68230416/047a8dd8-6ec6-4d51-97ff-b2d94e4b2f7a)
 
 
+
+https://github.com/Alpha110R/SpreadSheatManager/assets/68230416/8b8dbb7a-b28c-4d96-9168-0a3311c8ce29
+
+
+
