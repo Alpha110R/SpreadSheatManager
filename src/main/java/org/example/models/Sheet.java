@@ -20,10 +20,16 @@ public class Sheet {
     }
 
     public void setCell(Cell cell) throws IllegalArgumentException {
-        String cellColumnName = cell.getColumnName();
+        checkValidationOfCell(cell.getColumnName(), cell.getValue());
+        insertCell(cell);
+    }
 
-        checkValidationOfCell(cellColumnName, cell.getValue());
-        columnNameToMappingRowToCell.get(cellColumnName).put(cell.getRowIndex(), cell);
+    public void setCellLookUpAfterValidation(Cell cell){
+        insertCell(cell);
+    }
+
+    private void insertCell(Cell cell){
+        columnNameToMappingRowToCell.get(cell.getColumnName()).put(cell.getRowIndex(), cell);
     }
 
     private void checkValidationOfCell(String cellColumnName, Object cellValue) throws IllegalArgumentException{

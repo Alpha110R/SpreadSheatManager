@@ -17,7 +17,7 @@ public class LookupService implements LookupStrategy{
         visited.add(currentCell.getId());
         boolean isCycleNotExist = isThereCycle(sheet, currentCell, visited);
         if(isCycleNotExist)
-            sheet.setCell(currentCell);
+            sheet.setCellLookUpAfterValidation(currentCell);
     }
     private boolean isThereCycle(Sheet sheet, Cell cell, Set<String> visited) {
         updateCellWithLookupToNextCell(cell);
@@ -55,9 +55,34 @@ public class LookupService implements LookupStrategy{
         }
     }
 
+    public static int sumAllCellsInRange(Sheet sheet, Cell currentCell){//,String columnName, int startRowIndex, int finishRowIndex){
+        int sum=0;
+        String [] sumParams = getSumParams(currentCell);
+        String columnName = sumParams[0];
+        int startRowIndex = Integer.valueOf(sumParams[1]);
+        int finishRowIndex = Integer.valueOf(sumParams[2]);
+        ColumnType columnType = sheet.getColumnType(columnName);
+        if(!Objects.equals(columnType, ColumnType.INT))
+            return 0;
+
+        for(int i= startRowIndex; i<= finishRowIndex ; i++){
+            Cell cell = sheet.getCellEndPoint(columnName, i);
+            sum += (Integer) cell.getValue();
+        }
+
+        return sum;
+    }
+
     private String[] getLookupParams(Cell cell){
         String lookupString = cell.getValue().toString();
         String innerLookup = lookupString.substring("lookup(".length(), lookupString.length() - 1);
+        return innerLookup.split(",");
+
+    }
+
+    private static String[] getSumParams(Cell cell){
+        String lookupString = cell.getValue().toString();
+        String innerLookup = lookupString.substring("sum(".length(), lookupString.length() - 1);
         return innerLookup.split(",");
 
     }
